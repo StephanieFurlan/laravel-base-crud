@@ -17,7 +17,8 @@ class BeerController extends Controller
     {
         //
         $beers = Beer::all();
-        dd($beers);
+        // dd($beers);
+        return view('beers.index', ['beers' => $beers]);
     }
 
     /**
@@ -28,6 +29,7 @@ class BeerController extends Controller
     public function create()
     {
         //
+        return view('welcome');
     }
 
     /**
