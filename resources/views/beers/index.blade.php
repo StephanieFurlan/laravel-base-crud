@@ -6,14 +6,36 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/app.css')}}">
 
     </head>
     <body>
-       @foreach ($beers as $beer)
-        <h1>{{ $beer->id }}</h1>
-           
-       @endforeach
+        
+        <div class="container">
+            <h1 class="mt-5">Le mie birre</h1>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Quanità</th>
+                        <th>Tasso alcolico</th>
+                        <th>Prezzo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($beers as $beer)
+                    <tr>
+                        <td>{{ $beer->id }}</td>
+                        <td>{{ $beer->name }}</td>
+                        <td>{{ $beer->quantity }} L</td>
+                        <td>{{ $beer->alcohol }} %</td>
+                        <td>{{ $beer->price }} €</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
     </body>
 </html>
