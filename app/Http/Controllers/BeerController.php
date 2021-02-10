@@ -29,7 +29,6 @@ class BeerController extends Controller
     public function create()
     {
         //
-        return view('welcome');
     }
 
     /**
@@ -52,6 +51,8 @@ class BeerController extends Controller
     public function show($id)
     {
         //
+        $beer = Beer::find($id);
+        return view('beers.beer', compact('beer'));
     }
 
     /**
