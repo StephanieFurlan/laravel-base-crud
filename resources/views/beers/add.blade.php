@@ -10,6 +10,15 @@
                 <label for="name" class="form-label">Nome Birra</label>
                 <input type="text" class="form-control" name="name">
             </div>
+            @if ($errors->any())
+                <div>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="mb-3">
                 <label for="quantity" class="form-label">Quantità</label>
                 <input type="text" class="form-control" name="quantity">

@@ -42,6 +42,14 @@ class BeerController extends Controller
     {
         //
         $data = $request->all();
+
+        $request->validate([
+            'name' => 'required|max:20',
+            'quantity' => ' required|numeric',
+            'price' => ' required|numeric',
+            'alcohol' => ' required|numeric',
+        ]);
+
         $beer = new Beer();
         $beer->name = $data['name'];
         $beer->quantity = $data['quantity'];
