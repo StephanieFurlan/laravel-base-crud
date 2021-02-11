@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-5">Le mie birre</h1>
+        <h1 class="mt-5 float-start">Le mie birre</h1>
+        <a href="{{ route('beers.create')}}">Add Beer</a>
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
