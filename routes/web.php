@@ -17,5 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// Beer route
 Route::resource('beers', 'BeerController');
+
+

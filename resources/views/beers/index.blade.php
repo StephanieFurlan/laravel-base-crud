@@ -3,11 +3,12 @@
 @section('content')
     <div class="container">
         <h1 class="mt-5 float-start">Le mie birre</h1>
-        <a href="{{ route('beers.create')}}">Add Beer</a>
+        <div class="text-right">
+            <a class="btn btn-success mt-2 mb-2" href="{{ route('beers.create')}}"><i class="fas fa-plus"></i>Aggiungi Birra</a>
+        </div>
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Quanità</th>
                     <th>Tasso alcolico</th>
@@ -18,13 +19,13 @@
             <tbody>
                 @foreach ($beers as $beer)
                 <tr>
-                    <td>{{ $beer->id }}</td>
                     <td>{{ $beer->name }}</td>
                     <td>{{ $beer->quantity }} L</td>
                     <td>{{ $beer->alcohol }} %</td>
                     <td>{{ $beer->price }} €</td>
                     <td>
-                        <a href="{{ route('beers.show', ['beer' => $beer->id])}}">Click me</a>
+                        <a class="btn btn-light" href="{{ route('beers.show', $beer->id) }}"><i class="fas fa-eye"></i></a>
+                        <a class="btn btn-light" href="{{ route('beers.edit', $beer->id) }}"><i class="fas fa-pencil-alt"></i></a>
                     </td>
                 </tr>
                 @endforeach

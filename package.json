@@ -23,6 +23,8 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.2",
+        "font-awesome": "^4.7.0",
         "laravel": "0.0.1"
     }
 }

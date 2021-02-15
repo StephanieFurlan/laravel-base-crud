@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 use App\Beer;
 
 class BeerController extends Controller
-{
+{   
+    private $beerValidator = [
+        'name' => 'required|max:20',
+        'quantity' => ' required|numeric',
+        'price' => ' required|numeric',
+        'alcohol' => ' required|numeric',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +35,7 @@ class BeerController extends Controller
     public function create()
     {
         //
-        return view('beers.add');
+        return view('beers.create');
     }
 
     /**
@@ -41,14 +47,10 @@ class BeerController extends Controller
     public function store(Request $request)
     {
         //
+        
         $data = $request->all();
 
-        $request->validate([
-            'name' => 'required|max:20',
-            'quantity' => ' required|numeric',
-            'price' => ' required|numeric',
-            'alcohol' => ' required|numeric',
-        ]);
+        $request->validate($this->beerValidator);
 
         $beer = new Beer();
         $beer->name = $data['name'];
@@ -57,7 +59,7 @@ class BeerController extends Controller
         $beer->price = $data['price'];
         $beer->save();
 
-        return redirect()->route('beers.index');
+        return redirect()->route('beers.index')->with('message', $beer->name . " salvata correttamente.");;
     }
 
     /**
@@ -79,9 +81,10 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Beer $beer)
+    {   
+        
+        return view('beers.edit', compact('beer'));
     }
 
     /**
@@ -91,9 +94,13 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Beer $beer)
     {
         //
+        $newBeer = $request->all();
+        $request->validate($this->beerValidator);
+        $beer->update($newBeer);
+        return redirect()->route('beers.index')->with('message', $beer->name . " modificata correttamente.");
     }
 
     /**
