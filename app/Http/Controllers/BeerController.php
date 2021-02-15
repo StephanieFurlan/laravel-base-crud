@@ -112,5 +112,8 @@ class BeerController extends Controller
     public function destroy($id)
     {
         //
+        $beer = Beer::findOrFail($id);
+        $beer->delete();
+        return redirect()->route('beers.index')->with('message', $beer->name . " cancellata correttamente.");
     }
 }

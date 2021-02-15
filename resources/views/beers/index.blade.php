@@ -6,6 +6,11 @@
         <div class="text-right">
             <a class="btn btn-success mt-2 mb-2" href="{{ route('beers.create')}}"><i class="fas fa-plus"></i>Aggiungi Birra</a>
         </div>
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
@@ -26,6 +31,11 @@
                     <td>
                         <a class="btn btn-light" href="{{ route('beers.show', $beer->id) }}"><i class="fas fa-eye"></i></a>
                         <a class="btn btn-light" href="{{ route('beers.edit', $beer->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                        <form style="display:inline-block" action="{{ route('beers.destroy', $beer->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
